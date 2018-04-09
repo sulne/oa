@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxzycs.oa.dao.LogDao">
+	<!-- 配置映射 -->
+	<resultMap type="Log" id="logResult">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="content" column="content" />
+		<result property="createDate" column="create_date" />
+		<result property="operation" column="operation" />
+		<result property="parameters" column="parameters" />
+	</resultMap>
+
+	<!-- 新建 -->
+	<insert id="create" useGeneratedKeys="true" keyProperty="id"
+		parameterType="Log">
+		INSERT INTO sys_log
+		(user_id,content,create_date,operation,parameters)
+		VALUES(#{userId},#{content},#{createDate},#{operation},#{parameters})
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Long">
+		DELETE FROM sys_log
+		WHERE id = #{id}
+	</delete>
+	
+	<!-- 删除用户操作日志 -->
+	<delete id="deleteByUserId" parameterType="Long">
+		DELETE FROM sys_log
+		WHERE user_id = #{userId}
+	</delete>
+	
+	<!-- 批量删除 -->
+	<delete id="batchDelete" parameterType="Long">
+	    DELETE FROM sys_log
+		WHERE id IN
+		<foreach item="id" collection="list" open="(" separator="," close=")">
+	        #{id}
+	    </foreach>
+	</delete>
+	
+	<!-- 清空 -->
+	<delete id="clear">
+	    DElETE FROM sys_log
+	</delete>
+	
+	<!-- 获取列表 -->
+	<select id="findList" resultMap="logResult">
+	    SELECT id,user_id,content,operation,create_date,parameters
+	    FROM sys_log
+	    <where>
+		    <if test="search != null and search != ''">
+		        content LIKE '%'||#{search}||'%'
+		    </if>
+		</where>
+		<!-- 动态排序#{}无效，需${} -->
+		<if test="sort != null and sort != '' and order != null and order != ''">
+		    ORDER BY ${sort} ${order}
+		</if>
+		<if test="limit != 0 and limit != null">
+			Limit #{offset},#{limit}
+		</if>
+	</select>
+	
+	<!-- 获取总数量 -->
+	<select id="findAllCount" resultType="Long">
+	    SELECT COUNT(1) FROM sys_log
+	</select>
+</mapper>

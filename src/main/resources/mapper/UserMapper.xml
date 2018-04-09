@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxzycs.oa.dao.UserDao">
+    <!-- 配置映射 -->
+    <resultMap type="User" id="userResult">
+        <id property="id" column="id"/>
+        <result property="email" column="email"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="locked" column="locked"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+    
+    <!-- 新建 -->
+    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+        INSERT INTO sys_user(username,email,password,salt,create_by,create_date,update_by,update_date,remarks)
+		VALUES (#{username},#{email},#{password},#{salt},#{createBy},NOW(),#{updateBy},NOW(),#{remarks})
+    </insert>
+    
+    <!-- 根据ID获取 -->
+    <select id="find" parameterType="Long" resultMap="userResult">
+        SELECT u.id,u.username,u.email,u.password,u.salt,u.locked,u.create_by,u.create_date,u.update_by,u.update_date,u.remarks 
+        FROM sys_user u
+        WHERE u.id = #{id}
+    </select>
+    
+    <!-- 根据邮件获取 -->
+    <select id="findByEmail" parameterType="String" resultMap="userResult">
+        SELECT u.id,u.username,u.email,u.password,u.salt,u.locked,u.create_by,u.create_date,u.update_by,u.update_date,u.remarks 
+        FROM sys_user u
+        WHERE u.email = #{email}
+    </select>
+    
+    <!-- 根据用户名获取 -->
+    <select id="findByUsername" parameterType="String" resultMap="userResult">
+        SELECT u.id,u.username,u.email,u.password,u.salt,u.locked,u.create_by,u.create_date,u.update_by,u.update_date,u.remarks 
+        FROM sys_user u
+        WHERE u.username = #{username}
+    </select>
+    
+    <!-- 获取列表 -->
+    <select id="findList" parameterType="Page" resultMap="userResult">
+        SELECT u.id,u.username,u.email,u.password,u.salt,u.locked,u.create_by,u.create_date,u.update_by,u.update_date,u.remarks 
+        FROM sys_user u
+        <where>
+		    <if test="search != null and search != ''">
+		        u.id LIKE '%'||#{search}||'%' or u.username LIKE '%'||#{search}||'%'
+		    </if>
+		</where>
+		<!-- 动态排序#{}无效，需${} -->
+		<if test="sort != null and sort != '' and order != null and order != ''">
+		    ORDER BY u.${sort} ${order}
+		</if>
+		<if test="limit != 0 and limit != null">
+			Limit #{offset},#{limit}
+		</if>
+    </select>
+    
+    <!-- 更新 -->
+    <update id="update" parameterType="User">
+        UPDATE sys_user SET username = #{username},email = #{email}, password = #{password},salt = #{salt},update_by = #{updateBy},update_date = NOW(),remarks = #{remarks} 
+		WHERE id = #{id}
+    </update>
+    
+    <!-- 删除 -->
+    <delete id="delete" parameterType="Long">
+        DELETE FROM sys_user WHERE id = #{id}
+    </delete>
+    
+    <!-- 获取总用户数 -->
+    <select id="findAllCount" resultType="Long">
+        SELECT COUNT(1) FROM sys_user
+    </select>
+</mapper>

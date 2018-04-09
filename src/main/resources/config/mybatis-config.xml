@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:xj;version:03-25 -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+	    <!-- 日志设置 -->
+		<setting name="logImpl" value="LOG4J2" />
+	</settings>
+
+	<!-- 实体类简写 -->
+	<typeAliases>
+		<typeAlias alias="User" type="com.hxzycs.oa.entity.User" />
+		<typeAlias alias="Log" type="com.hxzycs.oa.entity.Log" />
+		<typeAlias alias="Page" type="com.hxzycs.oa.pojo.Page" />
+		<typeAlias alias="Menu" type="com.hxzycs.oa.entity.Menu" />
+	</typeAliases>
+</configuration>
