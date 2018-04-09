@@ -29,11 +29,11 @@
 	
 	
 	<!-- 启用Spring Shiro注解 -->
-	<aop:config proxy-target-class="true"></aop:config>
+	<!-- <aop:config proxy-target-class="true"></aop:config>
 	<bean
 		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
-	</bean>
+	</bean> -->
 
 	<!-- 默认的视图解析器- -->
 	<bean id="defaultViewResolver"

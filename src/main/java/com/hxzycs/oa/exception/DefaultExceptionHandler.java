@@ -26,14 +26,12 @@ public class DefaultExceptionHandler {
 		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 				+ request.getContextPath() + "/unauthorized";
 		if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-			// 告诉ajax我是重定向
 			response.setHeader("REDIRECT", "REDIRECT");
-			// 告诉ajax我重定向的路径
 			response.setHeader("CONTENTPATH", basePath);
 			response.setStatus(HttpServletResponse.SC_OK);
 			Map<String, Object> result = new HashMap<String, Object>();
         	result.put("flag", false);
-        	result.put("msg", "您没有授权，无法访问！");
+        	result.put("msg", "��û��Ȩ�޷��ʣ�����ϵ����Ա");
         	response.setCharacterEncoding("UTF-8");
         	response.setContentType("application/json");
         	System.out.println(JSONObject.fromObject(result).toString());

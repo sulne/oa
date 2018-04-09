@@ -20,8 +20,10 @@ public class UserController extends Junit4SpringTest{
 	
 	@Override
 	public void test() {
-		Page page = new Page();
-		
+		Double d = 1.34;
+		Double d1 = 1.34;
+		Double d2 = d * d1;
+		System.out.println(d2);
 	}
 	
 	public void test1() {
