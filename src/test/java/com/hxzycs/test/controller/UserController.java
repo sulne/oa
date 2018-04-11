@@ -29,7 +29,7 @@ public class UserController extends Junit4SpringTest{
 	public void test1() {
 		User user = new User();
 		user.setId(10003L);
-		user.setUsername("test111");
+		user.setUsername("уехЩ");
 		user.setEmail("qq@1631.com");
 		user.setPassword("123");
 		user.setSalt("123");

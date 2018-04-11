@@ -2,8 +2,6 @@ package com.hxzycs.oa.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hxzycs.oa.entity.User;
 import com.hxzycs.oa.pojo.Page;
-import com.hxzycs.oa.service.UserService;
 
 @Controller
 @RequestMapping(value = "/user")
-public class UserController {
-
-	private UserService userService;
-	@Resource(name="userService")
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+public class UserController extends BaseController{
 
 	@RequiresPermissions("user:add")
 	@RequestMapping(value = "/add")

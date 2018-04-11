@@ -34,6 +34,8 @@
 	href="<%=basePath%>/static/css/bootstrap3-wysihtml5.css">
 <!--  -->
 <link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/static/adminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" type="text/css"
 	href="<%=basePath%>/static/css/style.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>/static/css/themes/flat-blue.css">
@@ -41,8 +43,10 @@
 </head>
 
 <body class="flat-blue">
+
+
 	<%@include file="loader.jsp"%>
-	<div class="app-container expanded">
+	<div class="app-container">
 		<div class="row content-container ">
 			<%@include file="header.jsp"%>
 			<%@include file="navibar.jsp"%>
@@ -63,6 +67,7 @@
 	<script type="text/javascript" src="<%=basePath%>/static/js/common.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/static/js/app.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/static/js/index.js"></script>
+	<script type="text/javascript" src="<%=basePath%>/static/adminLTE/js/adminlte.min.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,12 @@
 $(function() {
   $(".navbar-expand-toggle").click(function() {
     $(".app-container").toggleClass("expanded");
+    console.log(1);
     return $(".navbar-expand-toggle").toggleClass("fa-rotate-90");
   });
   return $(".navbar-right-expand-toggle").click(function() {
     $(".navbar-right").toggleClass("expanded");
+    console.log(2);
     return $(".navbar-right-expand-toggle").toggleClass("fa-rotate-90");
   });
 });
