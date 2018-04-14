@@ -1,4 +1,4 @@
-package com.hxzycs.oa.web;
+package com.hxzycs.test;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -12,22 +12,18 @@
 			http://www.springframework.org/schema/tx 
 			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 			http://www.springframework.org/schema/websocket
-        	http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+        	http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd">
 	<context:annotation-config />
 	<context:component-scan base-package="com.hxzycs.oa.web" />
 	<context:component-scan base-package="com.hxzycs.oa.service" />
-	<websocket:handlers>
-        <websocket:mapping path="/myHandler" handler="myHandler"/>
-    </websocket:handlers>
-
-    <bean id="myHandler" class="com.hxzycs.oa.web.MyHandler"/>
+	
 	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
 		<property name="locations"> <value>classpath:jdbc.properties</value> </property> 
 		</bean> -->
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/oa?useSSL=true"/>
+        <property name="url" value="jdbc:mysql://192.168.1.196:3306/oa?useSSL=true"/>
         <property name="username" value="oa"/>
         <property name="password" value="1234"/>
 	</bean>

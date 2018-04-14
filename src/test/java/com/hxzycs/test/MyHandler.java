@@ -1,4 +1,4 @@
-package com.hxzycs.oa.web;
+package com.hxzycs.test;
 
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
